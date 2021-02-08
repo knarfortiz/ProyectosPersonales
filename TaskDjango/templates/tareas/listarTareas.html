@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+    <title>Tareas</title>
+{% endblock %}
+
+{% block container %}
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col offset-10">
+				<a class="btn btn-outline-primary btn-lg">
+					<i class="bi bi-journal-medical"></i>
+					Crear Tarea
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			{% for tarea in tareas %}
+			{{ tarea.categoria.usuario}}
+				<div class="col-lg-4">
+					<div class="card mt-3">
+					  <div class="card-body">
+						<h5 class="card-title">{{ tarea }}</h5>
+						<p class="card-text">
+							{{ tarea.descripcion }}
+						</p>
+					  </div>
+					  <ul class="list-group list-group-flush">
+						{% for subtarea in subtareas %}
+							{% if subtarea.task.pk == tarea.pk %}
+								<li class="list-group-item">
+
+									<div class="row">
+										<div class="col">
+										  {{ subtarea }}
+										</div>
+										<div class="col-4">
+										  <div class="row justify-content-end">
+											<div class="col-4">
+												<a href="#" class="bi bi-pencil" title="Editar"></a>
+											</div>
+											<div class="col-4">
+													<a href="#" class="bi bi-bookmark-check" title="Finalizada"></a>
+											</div>
+											<div class="col-4">
+												<a href="#" class="bi bi-basket" title="Eliminar"></a>
+											</div>
+										  </div>
+										</div>
+									  </div>
+																		
+								</li>
+							{% endif %}
+						{% endfor %}
+					  </ul>
+					  <div class="card-body text-center">
+						  <div class="row">
+							<div class="col-3">
+								<a href="#" class="bi bi-journal-code" title="Nueva Subtarea"></a>
+							</div>
+							<div class="col-3">
+								<a href="#" class="bi bi-pencil" title="Editar Tarea"></a>
+							</div>
+							<div class="col-3">
+								<a href="#" class="bi bi-bookmark-check" title="Tarea Finalizada"></a>
+							</div>
+							<div class="col-3">
+								<a href="#" class="bi bi-basket" title="Eliminar Tarea"></a>
+							</div>
+						  </div>
+					  </div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
